@@ -1,0 +1,91 @@
+#include<iostream>
+using namespace std;
+
+class Stack
+{
+    int top;
+    int capacity;
+    int *a;
+    
+    public:
+    Stack() : capacity(10) , a(new int[capacity]),top(-1){}
+    
+    void push(int d);
+    int pop();
+    bool isFull();
+    bool isEmpty();
+    int peek();
+    
+};
+bool Stack ::isEmpty()
+{
+    return top==-1;
+}
+
+bool Stack:: isFull()
+{
+    return top == capacity-1;
+}
+
+void Stack :: push(int data)
+{
+    if(isFull())
+    cout<<"Stack overflow"<<endl;
+    
+    else
+    {
+        a[++top]=data;
+        cout<<data<<" has been pushed onto the stack"<<endl;
+    }
+}
+
+int Stack :: pop()
+{
+    int x = -1;
+    
+    
+    if(!isEmpty())
+    {
+        x = a[top--];
+        
+        
+    }
+    return x;
+}
+
+int Stack :: peek()
+{
+    if(isEmpty())
+    {
+        return -1;
+    }
+    else 
+    {
+        return a[top];
+    }
+}
+
+int main()
+{
+    Stack s;
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(4);
+    s.push(5);
+    
+    int a = s.pop();
+    cout<<a<<" has been popped out from the stack "<<endl;
+    
+    int x = s.peek();
+    cout<<x<<" is the topmost element in the stack "<<endl;
+    
+    
+    bool is_empty = s.isEmpty();
+    cout<<is_empty<<endl;
+    
+    bool is_full = s.isFull();
+    cout<<is_full<<endl;
+    
+    return 0;
+}
