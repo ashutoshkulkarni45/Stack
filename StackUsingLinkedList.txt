@@ -1,0 +1,110 @@
+#include<iostream>
+using namespace std;
+
+class StackNode
+{
+    public:
+    int data;
+    StackNode *nxt;
+};
+
+class Stack
+{
+    StackNode *top;
+    
+    public:
+    void push(int d);
+    int peek();
+    bool isFull(StackNode *t);
+    bool isEmpty();
+    int pop();
+    ~Stack();
+};
+
+bool Stack :: isFull(StackNode *t)
+{
+    return t==nullptr;
+}
+
+bool Stack :: isEmpty()
+{
+    return top == nullptr;
+}
+
+void Stack :: push(int d)
+{
+    StackNode *t = new StackNode;
+    if(isFull(t))
+    {
+        cout<<"stack overflow"<<endl;
+    }
+    else
+    {
+   
+        t->data = d;
+        t->nxt = top;
+        top = t;
+        cout<<d<<" has been pushed onto the stack"<<endl;
+    }
+}
+
+int Stack :: pop()
+{
+    int x = -1;
+    
+    if(isEmpty())
+    {
+        cout<<"Stack underflow"<<endl;
+        return x;
+    }
+    else 
+    {
+        StackNode *temp = top;
+        x = temp->data;
+        top = top->nxt;
+        delete temp;
+        //cout<<top<<endl;
+        return x;
+        
+    }
+    
+}
+Stack::~Stack() {
+    while (!isEmpty()) {
+        pop();
+    }
+}
+
+int main()
+{
+    Stack s;
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(4);
+    s.push(5);
+    
+    int p = s.pop();
+    cout<<p<<" Popped"<<endl;
+    
+    int a = s.pop();
+    cout<<a<<" Popped"<<endl;
+    
+    int c = s.pop();
+    cout<<c<<" Popped"<<endl;
+    
+    int d = s.pop();
+    cout<<d<<" Popped"<<endl;
+    
+    int b = s.pop();
+    cout<<b<<" Popped"<<endl;
+    
+    int f =s.pop();
+    cout<<f<<endl;
+    
+    
+    
+    
+    
+    return 0;
+}
