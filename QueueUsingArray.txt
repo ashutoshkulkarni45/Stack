@@ -1,0 +1,99 @@
+#include<iostream>
+using namespace std;
+
+class Queue
+{
+    int front;
+    int rear;
+    int *p;
+    int capacity;
+    
+    public:
+    Queue() :front(-1),rear(-1),capacity(10),p(new int[capacity]){}
+    Queue(int size):  front(-1),capacity(size),p(new int[capacity]),rear(-1){}
+    void Enqueue(int e);
+    int Dequeue();
+    bool isEmpty();
+    bool isFull();
+};
+
+bool Queue :: isFull()
+{
+    return rear == capacity-1;
+}
+
+bool Queue :: isEmpty()
+{
+    return front == rear;
+}
+
+void Queue :: Enqueue(int e)
+{
+    if(isFull())
+    {
+       cout<<"Queue is full"<<endl; 
+    }
+    else
+    {
+        if(rear==-1)
+        {
+            rear = 0;
+            front=-1;
+            
+        }
+        else
+        {
+            rear++;
+        }
+        
+    }
+    p[rear]=e;
+    cout<<e<<"Enqueued"<<endl;
+}
+
+int Queue :: Dequeue()
+{
+    int x = -1;
+    if(isEmpty())
+    {
+        cout<<"Queue is Empty"<<endl;
+        //return -1;
+    }
+    else
+    {   
+         x= p[front+1];
+        front++;
+        
+    }
+    return x;
+}
+
+int main()
+{
+    Queue q(10);
+    q.Enqueue(1);
+    q.Enqueue(2);
+    q.Enqueue(3);
+    q.Enqueue(4);
+    q.Enqueue(5);
+    
+    int a = q.Dequeue();
+    cout<<a<<" Dequeued"<<endl;
+    
+    int b = q.Dequeue();
+    cout<<b<<" Dequeued"<<endl;
+    
+    int c = q.Dequeue();
+    cout<<c<<" Dequeued"<<endl;
+    
+    int d = q.Dequeue();
+    cout<<d<<" Dequeued"<<endl;
+    
+    int e = q.Dequeue();
+    cout<<e<<"Dequeued"<<endl;
+    
+    int f =q.Dequeue();
+    cout<<f<<endl;
+    
+    return 0;
+}
