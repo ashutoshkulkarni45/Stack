@@ -1,0 +1,85 @@
+#include<iostream>
+using namespace std;
+
+class Node
+{
+    public:
+    int data;
+    Node *next;
+};
+
+class Queue
+{
+    Node *front;
+    Node *rear;
+    
+    public:
+    Queue() : front(nullptr),rear(nullptr){}
+    void Enqueue(int d);
+    int Dequeue();
+};
+
+void Queue :: Enqueue(int e)
+{
+    Node *t = new Node;
+    if(t==nullptr)
+    {
+        cout<<"Queue is full"<<endl;
+    }
+    
+    else 
+    {
+        if(rear == nullptr)
+        {
+            t->data = e;
+            t->next = nullptr;
+            front = rear = t;
+            cout<<e<<" Enqueued"<<endl;
+        }
+        
+        else
+        {
+           t->data = e;
+            rear->next = t;
+            rear = rear->next; 
+            cout<<e<<" Enqueued"<<endl;
+        }
+    }
+        
+}
+
+int Queue :: Dequeue()
+{
+    if(front == nullptr)
+    {
+        cout<<"Queue is empty"<<endl;
+        return -1;
+    }
+    
+    else
+    {
+        Node *t = front ;
+        front = front->next;
+        int x = t->data;
+        delete t;
+        return x;
+    }
+}
+
+int main()
+{
+    Queue q;
+    q.Enqueue(1);
+    q.Enqueue(2);
+    
+    int x = q.Dequeue();
+    cout<<x<<"Dequeued"<<endl;
+    
+    int y = q.Dequeue();
+    cout<<y<<"Dequeued"<<endl;
+    
+    int z = q.Dequeue();
+    cout<<z<<endl;
+    
+    return 0;
+}
